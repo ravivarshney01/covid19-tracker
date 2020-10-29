@@ -1,4 +1,14 @@
-# Getting Started with Create React App
+# covid19-tracker
+
+## Technologies used
+
+- ReactJS
+- Material UI
+- Leaflet
+- Chart.js
+- Disease.sh API
+
+![SS](ss.png 'Covid19 tracker snaphsot')
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
