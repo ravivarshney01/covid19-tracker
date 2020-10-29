@@ -75,66 +75,80 @@ function App () {
   }
 
   return (
-    <div className='app'>
-      <div className='app__left'>
-        <div className='app__header'>
-          <h1>COVID19 TRACKER</h1>
-          <FormControl className='app__dropdown'>
-            <Select
-              variant='outlined'
-              value={country}
-              onChange={onCountryChange}
-            >
-              <MenuItem value='worldwide'>Worldwide</MenuItem>
-              {countries.map((country, index) => (
-                <MenuItem key={index} value={country.value}>
-                  {country.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </div>
-        <div className='app__stats'>
-          <Box
-            onClick={e => setCasesType('cases')}
-            title='Coronavirus Cases'
-            isRed
-            active={casesType === 'cases'}
-            cases={prettyPrintStat(countryInfo.todayCases)}
-            total={numeral(countryInfo.cases).format('0.0a')}
-          />
-          <Box
-            onClick={e => setCasesType('recovered')}
-            title='Recovered'
-            active={casesType === 'recovered'}
-            cases={prettyPrintStat(countryInfo.todayRecovered)}
-            total={numeral(countryInfo.recovered).format('0.0a')}
-          />
-          <Box
-            onClick={e => setCasesType('deaths')}
-            title='Deaths'
-            isRed
-            active={casesType === 'deaths'}
-            cases={prettyPrintStat(countryInfo.todayDeaths)}
-            total={numeral(countryInfo.deaths).format('0.0a')}
-          />
-        </div>
+    <div>
+      <div className='app'>
+        <div className='app__left'>
+          <div className='app__header'>
+            <h1>COVID19 TRACKER</h1>
+            <FormControl className='app__dropdown'>
+              <Select
+                variant='outlined'
+                value={country}
+                onChange={onCountryChange}
+              >
+                <MenuItem value='worldwide'>Worldwide</MenuItem>
+                {countries.map((country, index) => (
+                  <MenuItem key={index} value={country.value}>
+                    {country.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </div>
+          <div className='app__stats'>
+            <Box
+              onClick={e => setCasesType('cases')}
+              title='Coronavirus Cases'
+              isRed
+              active={casesType === 'cases'}
+              cases={prettyPrintStat(countryInfo.todayCases)}
+              total={numeral(countryInfo.cases).format('0.0a')}
+            />
+            <Box
+              onClick={e => setCasesType('recovered')}
+              title='Recovered'
+              active={casesType === 'recovered'}
+              cases={prettyPrintStat(countryInfo.todayRecovered)}
+              total={numeral(countryInfo.recovered).format('0.0a')}
+            />
+            <Box
+              onClick={e => setCasesType('deaths')}
+              title='Deaths'
+              isRed
+              active={casesType === 'deaths'}
+              cases={prettyPrintStat(countryInfo.todayDeaths)}
+              total={numeral(countryInfo.deaths).format('0.0a')}
+            />
+          </div>
 
-        <Map
-          center={mapCenter}
-          zoom={mapZoom}
-          countries={mapCountries}
-          casesType={casesType}
-        />
+          <Map
+            center={mapCenter}
+            zoom={mapZoom}
+            countries={mapCountries}
+            casesType={casesType}
+          />
+        </div>
+        <Card className='app__right'>
+          <CardContent>
+            <h3>Live cases</h3>
+            <Table countries={tableData} />
+            <h3>Worldwide new {casesType}</h3>
+            <LineGraph casesType={casesType} />
+          </CardContent>
+        </Card>
       </div>
-      <Card className='app__right'>
-        <CardContent>
-          <h3>Live cases</h3>
-          <Table countries={tableData} />
-          <h3>Worldwide new {casesType}</h3>
-          <LineGraph casesType={casesType} />
-        </CardContent>
-      </Card>
+      <div className='footer'>
+        <div className='footer__link'>
+          ⭐{' '}
+          <a href='https://github.com/ravivarshney01/covid19-tracker'>
+            on github
+          </a>
+        </div>
+        <div className='footer__text'>
+          Made with<span className='heart'> ❤️ </span>by{' '}
+          <a href='https://github.com/ravivarshney01'>Ravi</a>
+        </div>
+      </div>
     </div>
   )
 }
